@@ -3,16 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <title>Игра "Змейка"</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Иконка сайта -->
+    <link rel="shortcut icon" href="img/logo-snake.ico" type="image/x-icon">
 </head>
 <body>
-    <div>
-        <canvas>
-
-        </canvas>
+<div class="container d-flex h-100 justify-content-center align-items-center p-0">
+    <!-- стартовый экран -->
+    <div class="row block-start">
+        <canvas id="bg-canvas"></canvas>
+        <div class="col start-screen text-center">
+            <h1>Игра Змейка</h1>
+            <p class="p-1">
+                <button type="button" class="btn btn-lg btn-primary btn-start-game"><i class="fa-solid fa-gamepad pr-5"></i>Начать игру</button>
+            </p>
+            <p class="p-1">
+                <button type="button" class="btn btn-lg btn-primary setting-game"><i class="fa-solid fa-gear pr-5"></i>Настройки</button>
+            </p>
+            <p class="p-1">
+                <button type="button" class="btn btn-lg btn-primary rule-game"><i class="fa-solid fa-book pr-5"></i>Правила</button>
+            </p>
+        </div>
     </div>
+    <!-- настройки игры -->
+
+    <!-- игра -->
+    <!--
+    <div class="row">
+        <div class="col">
+            <p>daadda</p>
+            <canvas id="game" class="center-block"></canvas>
+        </div>
+    </div>
+    -->
+</div>
 
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/background.js"></script>
 </body>
 </html>

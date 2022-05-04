@@ -1,1 +1,44 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+/* Стили блоков */
+#game {
+    height: 300px;
+    border: 1px solid black;
+}
+.block-start {
+    color: white;
+    width: 800px;
+    height: 100vh;
+    background-color: #2d2d3b;
+    position: relative;
+}
+.start-screen {
+    padding-top: 100px;
+    position:absolute;
+}
+
+/* Отступы внешние и внутренние */
+.pr-5 {
+    padding-right: 5px;
+}
+
+/* Стили кнопок */
+.btn-start-game {
+    background: linear-gradient(90deg, #1a3fa9, #d60080, #ff610d);
+    border-color: snow;
+    border-radius: 20px;
+}
+.setting-game {
+    background: linear-gradient(90deg, #c224ab,#0091ea,#50b6b9);
+    border-color: snow;
+    border-radius: 20px;
+}
+.rule-game {
+    background: linear-gradient(90deg, #2a856b,#0076b9,#4034cd);
+    border-color: snow;
+    border-radius: 20px;
+}
+
+/* Цвета */
+

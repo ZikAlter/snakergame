@@ -3,8 +3,10 @@
 
 /* Стили блоков */
 #game {
-    height: 300px;
+    width: 600px;
+    height: 600px;
     border: 1px solid black;
+    background-color: black;
 }
 .block-start {
     color: white;
@@ -15,7 +17,13 @@
 }
 .start-screen {
     padding-top: 100px;
-    position:absolute;
+    position: absolute;
+}
+.block-game  {
+    color: white;
+    width: 800px;
+    height: 100vh;
+    background-color: #2d2d3b;
 }
 
 /* Отступы внешние и внутренние */
@@ -41,4 +49,10 @@
 }
 
 /* Цвета */
+.bg-dark {
+    background-color: #2d2d3b;
+}
+.col-white {
+    color: white;
+}
 

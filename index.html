@@ -11,6 +11,7 @@
 <body>
 <div class="container d-flex h-100 justify-content-center align-items-center p-0">
     <!-- стартовый экран -->
+    <!-- 
     <div class="row block-start">
         <canvas id="bg-canvas"></canvas>
         <div class="col start-screen text-center">
@@ -19,24 +20,83 @@
                 <button type="button" class="btn btn-lg btn-primary btn-start-game"><i class="fa-solid fa-gamepad pr-5"></i>Начать игру</button>
             </p>
             <p class="p-1">
-                <button type="button" class="btn btn-lg btn-primary setting-game"><i class="fa-solid fa-gear pr-5"></i>Настройки</button>
+                <button type="button" class="btn btn-lg btn-primary setting-game" data-bs-toggle="modal" data-bs-target="#setting-modal"><i class="fa-solid fa-gear pr-5"></i>Настройки</button>
             </p>
             <p class="p-1">
-                <button type="button" class="btn btn-lg btn-primary rule-game"><i class="fa-solid fa-book pr-5"></i>Правила</button>
+                <button type="button" class="btn btn-lg btn-primary rule-game" data-bs-toggle="modal" data-bs-target="#ruller-modal"><i class="fa-solid fa-book pr-5"></i>Правила</button>
             </p>
-        </div>
-    </div>
-    <!-- настройки игры -->
-
-    <!-- игра -->
-    <!--
-    <div class="row">
-        <div class="col">
-            <p>daadda</p>
-            <canvas id="game" class="center-block"></canvas>
         </div>
     </div>
     -->
+    
+    <!-- модальное окно настройки игры -->
+    <div class="modal fade" id="setting-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="exampleModalLabel">Настройки игры</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-dark col-white">
+                <div class="row">
+                    <div class="col">
+                        <h3>Музыка</h3>
+                        <p>вкл.</p> 
+                        <button type="button" class="btn btn-dark btn-lg"><i class="fa-solid fa-volume-low"></i></button>
+                    </div>
+                    <div class="col">
+                        <h3>Звуки</h3>
+                        <p>вкл.</p> 
+                        <button type="button" class="btn btn-dark btn-lg"><i class="fa-solid fa-volume-low"></i></button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <h3>Полноэкранный режим</h3> 
+                        <button type="button" class="btn btn-dark btn-lg"><i class="fa-solid fa-maximize"></i></button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <h3>Языки</h3> 
+                        <button type="button" class="btn btn-dark btn-lg m-2"><img src="img/flag-rus.png" alt="" width="30px" height="30px"></button>
+                        <button type="button" class="btn btn-dark btn-lg m-2"><img src="img/flag-uk.png" alt="" width="30px" height="30px"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-dark">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- модальное окно правила игры -->
+    <div class="modal fade" id="ruller-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Правила игры</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-dark col-white">
+                <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem rem delectus aliquam nesciunt ea sit quibusdam? Recusandae, facilis magnam fugit voluptas quos ad rem voluptates nemo optio maiores, ab est.</p>
+            </div>
+            <div class="modal-footer bg-dark">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- игра -->
+    <div class="row block-game justify-content-center">
+        <div class="col ">
+            <h5>Счет: <span id="schet">0</span></h5>
+            <canvas id="game" class="center-block"></canvas>
+        </div>
+    </div>
 </div>
 
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

@@ -37,12 +37,12 @@
     border-color: snow;
     border-radius: 20px;
 }
-.setting-game {
+.btn-setting-game {
     background: linear-gradient(90deg, #c224ab,#0091ea,#50b6b9);
     border-color: snow;
     border-radius: 20px;
 }
-.rule-game {
+.btn-rule-game {
     background: linear-gradient(90deg, #2a856b,#0076b9,#4034cd);
     border-color: snow;
     border-radius: 20px;

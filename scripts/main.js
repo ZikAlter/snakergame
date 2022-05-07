@@ -11,7 +11,7 @@ let count = 0;
 
 let audio = new Audio('music/soundone.mp3');
 let gameover = new Audio('music/hitsound.mp3');
-let fonsound = new Audio('music/Hydrogen.mp3');
+//let fonsound = new Audio('music/Hydrogen.mp3');
 
 let schet = document.getElementById('schet');
 
@@ -41,7 +41,7 @@ function getRandomInt(min, max) {
 }
 // Игровой цикл — основной процесс, внутри которого будет всё происходить
 function loop() {
-  fonsound.play();
+  //fonsound.play();
   // Хитрая функция, которая замедляет скорость игры с 60 кадров в секунду до 15 (60/15 = 4)
   requestAnimationFrame(loop);
   // Игровой код выполнится только один раз из четырёх, в этом и суть замедления кадров, а пока переменная count меньше четырёх, код выполняться не будет

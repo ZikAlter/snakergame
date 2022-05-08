@@ -4,7 +4,7 @@ let rusbutton = document.getElementById('rus-lang');
 let titleHTML = document.querySelector('title');
 let english = {
     "namegame": "Game Snake",
-    "btnstart": "Start game",
+    "btnstart": "Start playing",
     "btnsetting": "Setting",
     "btnrules": "Rules",
     "titlesetting": "Setting game",
@@ -36,24 +36,37 @@ let russian = {
 let eng_json = JSON.stringify(english);
 let eng_parse = JSON.parse(eng_json);
 engbutton.addEventListener("click", function() {
-    dclicksong.play();
     titleHTML.innerHTML = 'Game "Snake"';
     for(let i of document.querySelectorAll('[data-words]')) {
         let field = i.getAttribute('data-words');
         i.innerText = eng_parse[field];
     }
+    if (localStorage.getItem('song') != 'off') {
+        dclicksong.play();
+    } else {
+        document.getElementById('sound-state').innerHTML = "off";
+    }
+    if (localStorage.getItem('music') == 'off') {
+        document.getElementById('music-state').innerHTML = "off";
+    }
     localStorage.setItem('language', 'eng');
-    console.log(localStorage.getItem('language'));
 });
 
 let rus_json = JSON.stringify(russian);
 let rus_parse = JSON.parse(rus_json);
 rusbutton.addEventListener("click", function() {
-    dclicksong.play();
     titleHTML.innerHTML = 'Игра "Змейка"';
     for(let i of document.querySelectorAll('[data-words]')) {
         let field = i.getAttribute('data-words');
         i.innerText = rus_parse[field];
+    }
+    if (localStorage.getItem('song') != 'off') {
+        dclicksong.play();
+    } else {
+        document.getElementById('sound-state').innerHTML = "выкл.";
+    }
+    if (localStorage.getItem('music') == 'off') {
+        document.getElementById('music-state').innerHTML = "выкл.";
     }
     let checkstorage = localStorage.getItem('language');
     if (checkstorage == 'eng') {

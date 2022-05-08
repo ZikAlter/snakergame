@@ -39,13 +39,13 @@
                 <div class="row">
                     <div class="col">
                         <h3 data-words="music">Музыка</h3>
-                        <p data-words="checkon">вкл.</p>
-                        <button type="button" class="btn btn-dark btn-lg"><i class="fa-solid fa-volume-low"></i></button>
+                        <p id="music-state" data-words="checkon">вкл.</p>
+                        <button type="button" id="click-music" class="btn btn-dark btn-lg"><i id="icon-music" class="fa-solid fa-volume-low"></i></button>
                     </div>
                     <div class="col">
                         <h3 data-words="sounds">Звуки</h3>
-                        <p data-words="checkon">вкл.</p>
-                        <button type="button" class="btn btn-dark btn-lg"><i class="fa-solid fa-volume-low"></i></button>
+                        <p id="sound-state" data-words="checkon">вкл.</p>
+                        <button type="button" id="click-icon-songs" class="btn btn-dark btn-lg"><i id="icon-song" class="fa-solid fa-volume-low"></i></button>
                     </div>
                 </div>
                 <hr>
@@ -99,7 +99,6 @@
     </div>
     -->
 </div>
-
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
 <script src="scripts/main.js"></script>

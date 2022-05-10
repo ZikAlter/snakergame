@@ -1,5 +1,202 @@
-/* code variant 1 */
+let btn_start_game = document.getElementById('btn-start-game');
+let start_screen = document.querySelector('.block-start');
+let game_screen = document.querySelector('.block-game');
+let endgame_screen = document.querySelector('.block-endgame');
+let click_repeat = document.getElementById('repeat-game');
+let click_menu = document.getElementById('click-menu');
+let score_end = document.getElementById('score-end');
+let sound_eat_food = new Audio('music/soundone.mp3');
+let sound_gameover = new Audio('music/hitsound.mp3');
+let music_one = new Audio('music/Hydrogen.mp3');
+let click_clack_song = new Audio('music/buttonclick.mp3');
 
+const canvas = document.getElementById('game');
+const context = canvas.getContext('2d');
+
+// Snake x and y position
+let xSnake = 10;
+let ySnake = 10;
+
+// grid size and tile count
+let gs = 30;
+let tc = 20;
+
+// Apple x and y position 15 15
+let xApple = Math.floor(Math.random()*tc);;
+let yApple = Math.floor(Math.random()*tc);
+
+// x and y velocity
+let xVelocity = 0;
+let yVelocity = 0;
+
+let trail = []; // list of tail elements
+let tail = 3; // tail size
+
+
+let score = document.getElementById("score-block");
+
+let color_cell = ['red', 'orange', '#48C0FE', 'yellow', '#AF2FB1'];
+let color_rand = Math.floor(Math.random() * color_cell.length);
+
+/* code variant 3 */
+btn_start_game.addEventListener("click", function() {
+    start_screen.classList.add('dis-none');
+    game_screen.classList.remove('dis-none');
+    document.addEventListener("keydown", move);
+    gameTimer = setInterval(game, 90); // скорость игры
+});
+
+click_menu.addEventListener("click", function() {
+    if (localStorage.getItem('song') != 'off') {
+        click_clack_song.play();
+    }
+    if (localStorage.getItem('music') != 'off') {
+        music_one.pause();
+        music_one.currentTime = 0;
+    }
+    score.innerText = 0;
+    tail = 3;
+    clearInterval(gameTimer);
+    // позиция игрока
+    xSnake = 10;
+    ySnake = 10;
+
+    // направление движения
+    xVelocity = 0;
+    yVelocity = 0;
+    game_screen.classList.add('dis-none');
+    start_screen.classList.remove('dis-none');
+});
+
+click_repeat.addEventListener("click", function() {
+    if (localStorage.getItem('song') != 'off') {
+        click_clack_song.play();
+    }
+    score.innerText = 0;
+    tail = 3;
+    clearInterval(gameTimer);
+    // позиция игрока
+    xSnake = 10;
+    ySnake = 10;
+
+    // направление движения
+    xVelocity = 0;
+    yVelocity = 0;
+
+    document.addEventListener("keydown", move);
+    gameTimer = setInterval(game, 90); // скорость игры
+});
+
+function game() {
+    if (localStorage.getItem('music') != 'off') {
+        music_one.play();
+    }
+    xSnake += xVelocity;
+    ySnake += yVelocity;
+
+    // редирект змейки если граница пересечена
+
+    if (xSnake < 0) {
+        xSnake = tc - 1;
+    } else if (xSnake > tc - 1) {
+        xSnake = 0;
+    } else if (ySnake < 0) {
+        ySnake = tc - 1;
+    } else if (ySnake > tc - 1) {
+        ySnake = 0;
+    }
+
+    // рисуем поле
+    context.fillStyle = '#000000'; // 212636 422857 6E7888
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    // сама змейка
+    context.fillStyle = 'lime';
+    context.shadowColor = 'lime';
+    context.shadowBlur = 15;
+    for(let i = 0; i < trail.length; i++){
+        context.fillRect(trail[i].x*gs, trail[i].y*gs, gs - 2, gs - 2);
+        /* тут был код */
+        if ((trail[i].x == xSnake) && (trail[i].y == ySnake) && (tail >= 4)) {
+            //tail = 3;
+            //score.innerText = 0;
+            if (localStorage.getItem('song') != 'off') {
+                sound_gameover.play();
+            }
+            endgame();
+        }
+    }
+    trail.push({x: xSnake, y: ySnake});
+    while(trail.length > tail){
+        trail.shift();
+    }
+    if ((xApple == xSnake) && (yApple==ySnake)) {
+        if (localStorage.getItem('song') != 'off') {
+            sound_eat_food.play();
+        }
+        score.innerText = +score.innerText + 1;
+        tail++;
+        xApple = Math.floor(Math.random()*tc);
+        yApple = Math.floor(Math.random()*tc);
+
+        color_rand = Math.floor(Math.random() * color_cell.length);
+        context.fillStyle = color_cell[color_rand];
+        context.shadowColor = color_cell[color_rand];
+        context.shadowBlur = 15;
+    }
+    // Shadow
+    context.fillStyle = color_cell[color_rand];
+    context.shadowColor = color_cell[color_rand];
+    context.shadowBlur = 15;
+    context.fillRect(xApple*gs, yApple*gs, gs - 2, gs - 2);
+}
+
+function move(e) { // события передвижения
+    //console.log(e.keyCode);
+    switch (e.keyCode) {
+        case 37:
+            xVelocity = -1;
+            yVelocity = 0;
+            break;
+        case 38:
+            xVelocity = 0;
+            yVelocity = -1;
+            break;
+        case 39:
+            xVelocity = 1;
+            yVelocity = 0;
+            break;
+        case 40:
+            xVelocity = 0;
+            yVelocity = 1;
+            break;
+    }
+}
+
+function endgame() { // конец игры
+    clearInterval(gameTimer);
+    if (localStorage.getItem('song') != 'off') {
+        sound_gameover.play();
+    }
+    score_end.innerText = score.innerText;
+    game_screen.classList.add('dis-none');
+    endgame_screen.classList.remove('dis-none');
+
+
+    //alert("Конец игры:)");
+    /*
+    // позиция игрока
+    let playerX = 15;
+    let playerY = 15;
+
+    // направление движения
+    let moveX = 0;
+    let moveY = 0;*/
+    //game();
+}
+
+/* code variant 1 */
+/*
 // Поле, на котором всё будет происходить, — тоже как бы переменная
 const canvas = document.getElementById('game');
 // Классическая змейка — двухмерная, сделаем такую же
@@ -145,3 +342,109 @@ document.addEventListener('keydown', function (e) {
 });
 // Запускаем игру
 requestAnimationFrame(loop);
+*/
+
+
+/* code variant 2 */
+/*
+let cells = 30; // ячеек
+let cellSize = 20; // размер ячейки
+
+// позиция еды
+let foodX = 25;
+let foodY = 25;
+
+// позиция игрока
+let playerX = 15;
+let playerY = 15;
+
+// направление движения
+let moveX = 0;
+let moveY = 0;
+
+let trail = []; // движение
+let tail = 3; // хвост
+
+let score = document.getElementById("score-block");
+
+btn_start_game.addEventListener("click", function() {
+    start_screen.classList.add('dis-none');
+    game_screen.classList.remove('dis-none');
+    document.addEventListener("keydown", move);
+    gameTimer = setInterval(game, 60); // событие обновления игры
+});
+
+function game() {
+    //score.innerText = 0;
+    playerX += moveX;
+    playerY += moveY;
+
+    if (playerX < 0 || playerY < 0 || playerY > cells || playerX > cells) { // если врезаемся в сетку то конец игры
+        endgame();
+    }
+
+    context.fillStyle = "#422857";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    context.fillStyle = "#f70505";
+    context.fillRect(foodX * cellSize, foodY * cellSize, cellSize, cellSize);
+
+    context.fillStyle = "#20700a";
+
+    for (let i = 0; i < trail.length; i++) {
+        context.fillRect(trail[i].x * 20, trail[i].y * 20, cellSize, cellSize);
+    }
+
+    trail.push({x: playerX, y: playerY});
+
+    if (playerX == foodX && playerY == foodY) {
+        tail++;
+        score.innerText = +score.innerText + 1;
+        foodX = Math.floor(Math.random() * cells);
+        foodY = Math.floor(Math.random() * cells);
+    }
+
+    // if (playerX == trail[i].x && playerY == trail[i].y) {
+       // endgame();
+    // }
+    while (trail.length > tail) {
+        trail.shift();
+    }
+
+}
+
+function endgame() { // конец игры
+    clearInterval(gameTimer);
+    alert("Конец игры:)");
+    // позиция игрока
+    let playerX = 15;
+    let playerY = 15;
+
+    // направление движения
+    let moveX = 0;
+    let moveY = 0;
+    //game();
+}
+
+function move(e) { // события передвижения
+    //console.log(e.keyCode);
+    switch (e.keyCode) {
+        case 37:
+            moveX = -1;
+            moveY = 0;
+            break;
+        case 38:
+            moveX = 0;
+            moveY = -1;
+            break;
+        case 39:
+            moveX = 1;
+            moveY = 0;
+            break;
+        case 40:
+            moveX = 0;
+            moveY = 1;
+            break;
+    }
+}
+*/

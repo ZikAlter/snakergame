@@ -16,7 +16,7 @@
         <div class="col start-screen text-center">
             <h1 data-words="namegame">Игра Змейка</h1>
             <p class="p-1">
-                <button type="button" class="btn btn-lg btn-primary btn-start-game"><i class="fa-solid fa-gamepad pr-5"></i><span data-words="btnstart">Начать игру</span></button>
+                <button type="button" class="btn btn-lg btn-primary btn-start-game" id="btn-start-game"><i class="fa-solid fa-gamepad pr-5"></i><span data-words="btnstart">Начать игру</span></button>
             </p>
             <p class="p-1">
                 <button type="button" class="btn btn-lg btn-primary btn-setting-game" id="btn-setting"><i class="fa-solid fa-gear pr-5"></i><span data-words="btnsetting">Настройки</span></button>
@@ -26,7 +26,45 @@
             </p>
         </div>
     </div>
-    
+
+    <!-- игра -->
+    <div class="row block-game justify-content-center dis-none">
+        <div class="col text-center">
+            <div class="row" style="width: 700px;">
+                <div class="col pt-2">
+                    <h5><span data-words="score">Счет:</span> <span id="score-block">0</span></h5>
+                </div>
+                <div class="col">
+                    <button type="button" id="click-menu" class="btn btn-dark btn-lg"><i class="fa-solid fa-list pr-5"></i><span data-words="menu">Меню</span></button>
+                    <button type="button" id="repeat-game" class="btn btn-dark btn-lg ml-20 mr-20"><i class="fa-solid fa-repeat"></i></button>
+                    <button type="button" class="btn btn-dark btn-lg" id="click-game-fullscreen"><i class="fa-solid fa-maximize"></i></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"><canvas id="game" width="600" height="600"></canvas></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Конец игры -->
+    <div class="row justify-content-center text-center block-endgame dis-none">
+        <div class="col text-center"></div>
+            <h1 data-words="gameover">Конец игры</h1>
+            <p>
+                <button type="button" class="btn btn-dark btn-lg" style="border: 5px solid white; border-radius: 220px;"><i class="fa-solid fa-trophy" style="font-size: 60px; color: #E9C800;"></i></button>
+                <h2>
+                    <span data-words="youscore">Ваш счет:</span> <span id="score-end">0</span>
+                </h2>
+            </p>
+            <p>
+                <button type="button" id="click-menu" class="btn btn-dark btn-lg m-2"><i class="fa-solid fa-list pr-5"></i><span data-words="menu">Меню</span></button>
+                <button type="button" id="repeat-game" class="btn btn-dark btn-lg m-2"><i class="fa-solid fa-repeat pr-5"></i><span data-words="repeat">Повторить</span></button>
+            </p>
+            <div class="row">
+                <div class="col"></div>
+            </div>
+    </div>
+
     <!-- модальное окно настройки игры -->
     <div class="modal fade" id="setting-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
@@ -89,20 +127,12 @@
         </div>
     </div>
 
-    <!-- игра -->
-    <!--
-    <div class="row block-game justify-content-center">
-        <div class="col ">
-            <h5>Счет: <span id="schet">0</span></h5>
-            <canvas id="game" class="center-block"></canvas>
-        </div>
-    </div>
-    -->
+
 </div>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
-<script src="scripts/main.js"></script>
 <script src="scripts/background.js"></script>
+<script src="scripts/main.js"></script>
 <script src="scripts/buttonclick.js"></script>
 <script src="scripts/multilanguage.js"></script>
 

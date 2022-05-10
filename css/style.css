@@ -1,11 +1,19 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@font-face {
+    font-family: "game";
+    src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap");
+}
+
+body {
+    /*font-family: "Poppins", sans-serif;*/
+}
 
 /* Стили блоков */
 #game {
     width: 600px;
     height: 600px;
-    border: 1px solid black;
+    border: 5px solid white;
     background-color: black;
 }
 .block-start {
@@ -23,12 +31,27 @@
     color: white;
     width: 800px;
     height: 100vh;
+    background-color: #2d2d3b; /* #2d2d3b */
+}
+.dis-none {
+    display: none;
+}
+.block-endgame {
+    color: white;
+    width: 800px;
+    height: 100vh;
     background-color: #2d2d3b;
 }
 
-/* Отступы внешние и внутренние */
+    /* Отступы внешние и внутренние */
 .pr-5 {
     padding-right: 5px;
+}
+.ml-20 {
+    margin-left: 20px;
+}
+.mr-20 {
+    margin-right: 20px;
 }
 
 /* Стили кнопок */

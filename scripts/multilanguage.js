@@ -15,7 +15,12 @@ let english = {
     "fullscreen": "Full screen",
     "lang": "Languages",
     "btnclose": "Close",
-    "rulegame": "Rules game"
+    "rulegame": "Rules game",
+    "score": "Score:",
+    "menu": "Menu",
+    "repeat": "Repeat",
+    "gameover": "Game over",
+    "youscore": "Your score:"
 };
 let russian = {
     "namegame": "Игра Змейка",
@@ -30,7 +35,11 @@ let russian = {
     "fullscreen": "Полноэкранный режим",
     "lang": "Языки",
     "btnclose": "Закрыть",
-    "rulegame": "Правила игры"
+    "rulegame": "Правила игры",
+    "score": "Счет:",
+    "menu": "Меню",
+    "repeat": "Повторить",
+    "youscore": "Ваш счет:"
 };
 
 let eng_json = JSON.stringify(english);

@@ -12,7 +12,8 @@ let setting_modal = new bootstrap.Modal(document.getElementById('setting-modal')
 let btn_rule = document.getElementById('btn-rule');
 let ruller_modal = new bootstrap.Modal(document.getElementById('ruller-modal'));
 
-let fullscreen = document.getElementById('click-fullscreen');
+let click_fullscreen = document.getElementById('click-fullscreen');
+let click_game_fullscreen = document.getElementById('click-game-fullscreen');
 let musicbutton = document.getElementById('click-music');
 
 let click_icon_songs = document.getElementById('click-icon-songs');
@@ -55,7 +56,10 @@ btn_rule.addEventListener("click", function() {
     ruller_modal.show();
 });
 
-fullscreen.addEventListener("click", function() {
+click_fullscreen.addEventListener("click", fullscreen);
+click_game_fullscreen.addEventListener("click", fullscreen);
+
+function fullscreen() {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
         if (localStorage.getItem('song') != 'off') {
@@ -69,7 +73,8 @@ fullscreen.addEventListener("click", function() {
             }
         }
     }
-});
+}
+
 
 musicbutton.addEventListener("click", function() {
     if (localStorage.getItem('song') != 'off') {

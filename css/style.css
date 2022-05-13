@@ -1,13 +1,5 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-@font-face {
-    font-family: "game";
-    src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap");
-}
-
-body {
-    /*font-family: "Poppins", sans-serif;*/
-}
 
 /* Стили блоков */
 #game {
@@ -31,7 +23,7 @@ body {
     color: white;
     width: 800px;
     height: 100vh;
-    background-color: #2d2d3b; /* #2d2d3b */
+    background-color: #2d2d3b;
 }
 .dis-none {
     display: none;
@@ -42,8 +34,13 @@ body {
     height: 100vh;
     background-color: #2d2d3b;
 }
+.block-elem-game {
+    width: 700px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
-    /* Отступы внешние и внутренние */
+/* Отступы внешние и внутренние */
 .pr-5 {
     padding-right: 5px;
 }
@@ -70,6 +67,11 @@ body {
     border-color: snow;
     border-radius: 20px;
 }
+.champion-btn-icon {
+    border: 5px solid white;
+    border-radius: 280px;
+    font-size: 60px;
+}
 
 /* Цвета */
 .bg-dark {
@@ -77,5 +79,8 @@ body {
 }
 .col-white {
     color: white;
+}
+.col-champion {
+    color: #E9C800;
 }
 

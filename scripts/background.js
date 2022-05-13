@@ -22,7 +22,6 @@ presets.o = function (x, y, s, dx, dy) {
         draw: function(ctx, t) {
             this.x += this.dx;
             this.y += this.dy;
-
             ctx.beginPath();
             ctx.arc(this.x + + Math.sin((50 + x + (t / 10)) / 100) * 3, this.y + + Math.sin((45 + x + (t / 10)) / 100) * 4, this.r, 0, 2 * Math.PI, false);
             ctx.lineWidth = this.w;
@@ -47,7 +46,6 @@ presets.x = function (x, y, s, dx, dy, dr, r) {
             this.x += this.dx;
             this.y += this.dy;
             this.r += this.dr;
-
             let _this = this;
             let line = function(x, y, tx, ty, c, o) {
                 o = o || 0;
@@ -58,15 +56,11 @@ presets.x = function (x, y, s, dx, dy, dr, r) {
                 ctx.strokeStyle = c;
                 ctx.stroke();
             };
-
             ctx.save();
-
             ctx.translate(this.x + Math.sin((x + (t / 10)) / 100) * 5, this.y + Math.sin((10 + x + (t / 10)) / 100) * 2);
             ctx.rotate(this.r * Math.PI / 180);
-
             line(-1, -1, 1, 1, '#fff');
             line(1, -1, -1, 1, '#fff');
-
             ctx.restore();
         }
     }
@@ -86,7 +80,6 @@ for(let x = 0; x < BGCanvas.width; x++) {
 
 setInterval(function() {
     ctx.clearRect(0, 0, BGCanvas.width, BGCanvas.height);
-
     let time = new Date().getTime();
     for (let e in elements)
         elements[e].draw(ctx, time);

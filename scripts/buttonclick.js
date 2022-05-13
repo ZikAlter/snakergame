@@ -1,37 +1,26 @@
-/*document.addEventListener('DOMContentLoaded', function () {
-    let fonsound = new Audio('music/Hydrogen.mp3');
-    fonsound.play();
-});*/
+const click_song = new Audio('music/buttonclick.mp3');
 
-let clicksong = new Audio('music/buttonclick.mp3');
 let buttons = document.querySelector('.btn');
-
 let btn_setting = document.getElementById('btn-setting');
-let setting_modal = new bootstrap.Modal(document.getElementById('setting-modal'));
-
 let btn_rule = document.getElementById('btn-rule');
-let ruller_modal = new bootstrap.Modal(document.getElementById('ruller-modal'));
-
 let click_fullscreen = document.getElementById('click-fullscreen');
 let click_game_fullscreen = document.getElementById('click-game-fullscreen');
-let musicbutton = document.getElementById('click-music');
-
+let music_button = document.getElementById('click-music');
 let click_icon_songs = document.getElementById('click-icon-songs');
-
 let sound_state = document.getElementById('sound-state');
 let music_state = document.getElementById('music-state');
 
-buttons.addEventListener("click", function() {
-    if (localStorage.getItem('song') != 'off') {
-        clicksong.play();
-    }
+let setting_modal = new bootstrap.Modal(document.getElementById('setting-modal'));
+let ruller_modal = new bootstrap.Modal(document.getElementById('ruller-modal'));
+
+buttons.addEventListener("click", () => {
+    play_songs(click_song);
 });
-btn_setting.addEventListener("click", function() {
+btn_setting.addEventListener("click", () => {
     if (localStorage.getItem('song') != 'off') {
-        clicksong.play();
+        click_song.play();
     } else {
-        document.getElementById('icon-song').classList.remove('fa-volume-low');
-        document.getElementById('icon-song').classList.add('fa-volume-xmark');
+        remove_add_class('icon-song', 'fa-volume-xmark', 'fa-volume-low');
         if (localStorage.getItem('language') == 'eng') {
             sound_state.innerHTML = "off";
         } else {
@@ -39,8 +28,7 @@ btn_setting.addEventListener("click", function() {
         }
     }
     if (localStorage.getItem('music') == 'off') {
-        document.getElementById('icon-music').classList.remove('fa-volume-low');
-        document.getElementById('icon-music').classList.add('fa-volume-xmark');
+        remove_add_class('icon-music', 'fa-volume-xmark', 'fa-volume-low');
         if (localStorage.getItem('language') == 'eng') {
             music_state.innerHTML = "off";
         } else {
@@ -49,41 +37,19 @@ btn_setting.addEventListener("click", function() {
     }
     setting_modal.show();
 });
-btn_rule.addEventListener("click", function() {
-    if (localStorage.getItem('song') != 'off') {
-        clicksong.play();
-    }
+btn_rule.addEventListener("click", () => {
+    play_songs(click_song);
     ruller_modal.show();
 });
 
 click_fullscreen.addEventListener("click", fullscreen);
 click_game_fullscreen.addEventListener("click", fullscreen);
 
-function fullscreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-        if (localStorage.getItem('song') != 'off') {
-            clicksong.play();
-        }
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-            if (localStorage.getItem('song') != 'off') {
-                clicksong.play();
-            }
-        }
-    }
-}
-
-
-musicbutton.addEventListener("click", function() {
-    if (localStorage.getItem('song') != 'off') {
-        clicksong.play();
-    }
+music_button.addEventListener("click", () => {
+    play_songs(click_song);
     if (localStorage.getItem('music') == 'off') {
         localStorage.removeItem('music');
-        document.getElementById('icon-music').classList.remove('fa-volume-xmark');
-        document.getElementById('icon-music').classList.add('fa-volume-low');
+        remove_add_class('icon-music', 'fa-volume-low', 'fa-volume-xmark');
         if (localStorage.getItem('language') == 'eng') {
             music_state.innerHTML = "on";
         } else {
@@ -91,8 +57,7 @@ musicbutton.addEventListener("click", function() {
         }
     } else {
         localStorage.setItem('music', 'off');
-        document.getElementById('icon-music').classList.remove('fa-volume-low');
-        document.getElementById('icon-music').classList.add('fa-volume-xmark');
+        remove_add_class('icon-music', 'fa-volume-xmark', 'fa-volume-low');
         if (localStorage.getItem('language') == 'eng') {
             music_state.innerHTML = "off";
         } else {
@@ -101,21 +66,19 @@ musicbutton.addEventListener("click", function() {
     }
 });
 
-click_icon_songs.addEventListener("click", function() {
+click_icon_songs.addEventListener("click", () => {
     if (localStorage.getItem('song') == 'off') {
         localStorage.removeItem('song');
-        document.getElementById('icon-song').classList.remove('fa-volume-xmark');
-        document.getElementById('icon-song').classList.add('fa-volume-low');
+        remove_add_class('icon-song', 'fa-volume-low', 'fa-volume-xmark');
         if (localStorage.getItem('language') == 'eng') {
             sound_state.innerHTML = "on";
         } else {
             sound_state.innerHTML = "вкл.";
         }
     } else {
-        clicksong.play();
+        click_song.play();
         localStorage.setItem('song', 'off');
-        document.getElementById('icon-song').classList.remove('fa-volume-low');
-        document.getElementById('icon-song').classList.add('fa-volume-xmark');
+        remove_add_class('icon-song', 'fa-volume-xmark', 'fa-volume-low');
         if (localStorage.getItem('language') == 'eng') {
             sound_state.innerHTML = "off";
         } else {
@@ -123,3 +86,26 @@ click_icon_songs.addEventListener("click", function() {
         }
     }
 });
+
+function fullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        play_songs(click_song);
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+            play_songs(click_song);
+        }
+    }
+}
+
+function remove_add_class(element, class_add, class_remove) {
+    document.getElementById(element).classList.remove(class_remove);
+    document.getElementById(element).classList.add(class_add);
+}
+
+function play_songs(songs) {
+    if (localStorage.getItem('song') != 'off') {
+        songs.play();
+    }
+}

@@ -1,7 +1,7 @@
-let dclicksong = new Audio('music/buttonclick.mp3');
-let engbutton = document.getElementById('eng-lang');
-let rusbutton = document.getElementById('rus-lang');
+let eng_button = document.getElementById('eng-lang');
+let rus_button = document.getElementById('rus-lang');
 let titleHTML = document.querySelector('title');
+
 let english = {
     "namegame": "Game Snake",
     "btnstart": "Start playing",
@@ -20,7 +20,10 @@ let english = {
     "menu": "Menu",
     "repeat": "Repeat",
     "gameover": "Game over",
-    "youscore": "Your score:"
+    "youscore": "Your score:",
+    "rulepage1": "The player controls a long, slender, snake-like creature that crawls across the playing field, gathering food (or other items) while avoiding its own tail. Each time the snake eats a piece of food, it becomes longer, which gradually makes the game more difficult.",
+    "rulepage2": "The main goal of the game is to collect as much food as possible and score points. Loss in the game is counted when colliding with one's own tail.",
+    "rulepage3": "Use the up, down, right, left arrow keys to navigate."
 };
 let russian = {
     "namegame": "Игра Змейка",
@@ -39,19 +42,22 @@ let russian = {
     "score": "Счет:",
     "menu": "Меню",
     "repeat": "Повторить",
-    "youscore": "Ваш счет:"
+    "gameover": "Конец игры",
+    "youscore": "Ваш счет:",
+    "rulepage1": "Игрок управляет длинным, тонким существом, напоминающим змею, которое ползает по игровому полю, собирая еду (или другие предметы), при этом избегая столкновения с собственным хвостом. Каждый раз, когда змея съедает кусок еды, она становится длиннее, что постепенно усложняет игру.",
+    "rulepage2": "Основная цель игры: собрать как можно больше еды и набрать баллы. Проигрыш засчитывается при столкновении с собственным хвостом.",
+    "rulepage3": "Для управления используйте клавиши стрелки вверх, вниз, вправо, влево."
 };
 
 let eng_json = JSON.stringify(english);
 let eng_parse = JSON.parse(eng_json);
-engbutton.addEventListener("click", function() {
-    titleHTML.innerHTML = 'Game "Snake"';
-    for(let i of document.querySelectorAll('[data-words]')) {
-        let field = i.getAttribute('data-words');
-        i.innerText = eng_parse[field];
-    }
+let rus_json = JSON.stringify(russian);
+let rus_parse = JSON.parse(rus_json);
+
+eng_button.addEventListener("click", function() {
+    translate_txt ('Game "Snake"', eng_parse);
     if (localStorage.getItem('song') != 'off') {
-        dclicksong.play();
+        click_song.play();
     } else {
         document.getElementById('sound-state').innerHTML = "off";
     }
@@ -61,37 +67,33 @@ engbutton.addEventListener("click", function() {
     localStorage.setItem('language', 'eng');
 });
 
-let rus_json = JSON.stringify(russian);
-let rus_parse = JSON.parse(rus_json);
-rusbutton.addEventListener("click", function() {
-    titleHTML.innerHTML = 'Игра "Змейка"';
-    for(let i of document.querySelectorAll('[data-words]')) {
-        let field = i.getAttribute('data-words');
-        i.innerText = rus_parse[field];
-    }
+rus_button.addEventListener("click", function() {
+    translate_txt ('Игра "Змейка"', rus_parse);
     if (localStorage.getItem('song') != 'off') {
-        dclicksong.play();
+        click_song.play();
     } else {
         document.getElementById('sound-state').innerHTML = "выкл.";
     }
     if (localStorage.getItem('music') == 'off') {
         document.getElementById('music-state').innerHTML = "выкл.";
     }
-    let checkstorage = localStorage.getItem('language');
-    if (checkstorage == 'eng') {
+    if (localStorage.getItem('language') == 'eng') {
         localStorage.removeItem('language');
     }
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    let langstorage = localStorage.getItem('language');
-    if (langstorage == 'eng') {
-        titleHTML.innerHTML = 'Game "Snake"';
-        for(let i of document.querySelectorAll('[data-words]')) {
-            let field = i.getAttribute('data-words');
-            i.innerText = eng_parse[field];
-        }
+    if (localStorage.getItem('language') == 'eng') {
+        translate_txt ('Game "Snake"', eng_parse);
     }
 });
+
+function translate_txt (inner_html, elem_parse) {
+    titleHTML.innerHTML = inner_html;
+    for(let i of document.querySelectorAll('[data-words]')) {
+        let field = i.getAttribute('data-words');
+        i.innerText = elem_parse[field];
+    }
+}
 
 
